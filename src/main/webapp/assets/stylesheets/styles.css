@@ -1,0 +1,28 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#post-op {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.op {
+    color: black;
+}
+
+.op:hover {
+    color: #929292;
+}
+
+.post-add-form {
+    max-width: 50% !important;
+    padding-top: 10%;
+}
