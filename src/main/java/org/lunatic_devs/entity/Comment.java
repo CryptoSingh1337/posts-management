@@ -2,6 +2,7 @@ package org.lunatic_devs.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by CryptoSingh1337 on 6/7/2021
@@ -19,12 +20,14 @@ public class Comment {
     @Column(name = "description")
     private String description;
     @Column(name = "date")
-    private LocalDate date;
+    private LocalDateTime date;
+    @Column(name = "timeLabel")
+    private String timeLabel;
 
     public Comment() {
     }
 
-    public Comment(String username, String description, LocalDate date) {
+    public Comment(String username, String description, LocalDateTime date) {
         this.username = username;
         this.description = description;
         this.date = date;
@@ -54,12 +57,20 @@ public class Comment {
         this.description = description;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public String getTimeLabel() {
+        return timeLabel;
+    }
+
+    public void setTimeLabel(String timeLabel) {
+        this.timeLabel = timeLabel;
     }
 
     @Override

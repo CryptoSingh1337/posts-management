@@ -1,7 +1,7 @@
 package org.lunatic_devs.entity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +22,12 @@ public class Post {
     @Column(name = "content")
     private String content;
     @Column(name = "date")
-    private LocalDate date;
+    private LocalDateTime date;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "post_id")
     private List<Comment> comments;
+    @Column(name = "timeLabel")
+    private String timeLabel;
 
     public Post() {
     }
@@ -59,11 +61,11 @@ public class Post {
         this.content = content;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -73,6 +75,14 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getTimeLabel() {
+        return timeLabel;
+    }
+
+    public void setTimeLabel(String timeLabel) {
+        this.timeLabel = timeLabel;
     }
 
     public void addComment(Comment comment) {

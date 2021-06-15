@@ -3,11 +3,12 @@ package org.lunatic_devs.service;
 import org.lunatic_devs.dao.PostDAO;
 import org.lunatic_devs.entity.Comment;
 import org.lunatic_devs.entity.Post;
+import org.lunatic_devs.utils.TimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -17,18 +18,21 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
 
     private PostDAO postDAO;
+    private TimeFormatter formatter;
 
     @Override
     @Transactional
     public void addPost(Post post) {
-        post.setDate(LocalDate.now());
+        post.setDate(LocalDateTime.now());
         postDAO.addPost(post);
     }
 
     @Override
     @Transactional
     public List<Post> getPosts() {
-        return postDAO.getPosts();
+        List<Post> posts = postDAO.getPosts();
+        posts.forEach(e -> e.setTimeLabel(formatter.formatTime(e.getDate())));
+        return posts;
     }
 
     @Override
@@ -47,12 +51,17 @@ public class PostServiceImpl implements PostService {
     @Transactional
     public void addPostComment(long id, Comment comment) {
         comment.setUsername("Anonymous");
-        comment.setDate(LocalDate.now());
+        comment.setDate(LocalDateTime.now());
         postDAO.addPostComment(id, comment);
     }
 
     @Autowired
     public void setPostDAO(PostDAO postDAO) {
         this.postDAO = postDAO;
+    }
+
+    @Autowired
+    public void setFormatter(TimeFormatter formatter) {
+        this.formatter = formatter;
     }
 }

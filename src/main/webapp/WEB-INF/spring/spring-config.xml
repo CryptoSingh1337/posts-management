@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:component-scan base-package="org.lunatic_devs.controller, org.lunatic_devs.dao, org.lunatic_devs.service"/>
+    <context:component-scan base-package="org.lunatic_devs.controller, org.lunatic_devs.dao, org.lunatic_devs.service, org.lunatic_devs.utils"/>
     <mvc:annotation-driven/>
     <mvc:resources mapping="/assets/**" location="/assets/"/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
